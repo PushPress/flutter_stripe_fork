@@ -195,6 +195,18 @@ class MethodChannelStripe extends StripePlatform {
   }
 
   @override
+  Future<SetupIntent> retrieveSetupIntent(String clientSecret) async {
+    final result = await _methodChannel
+        .invokeMapMethod<String, dynamic>('retrieveSetupIntent', {
+      'clientSecret': clientSecret,
+    });
+
+    return ResultParser<SetupIntent>(
+        parseJson: (json) => SetupIntent.fromJson(json))
+        .parse(result: result!, successResultKey: 'setupIntent');
+  }
+
+  @override
   Future<void> initPaymentSheet(SetupPaymentSheetParameters params) async {
     await _methodChannel.invokeMethod(
       'initPaymentSheet',

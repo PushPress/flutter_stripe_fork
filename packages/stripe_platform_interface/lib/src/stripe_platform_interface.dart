@@ -82,6 +82,7 @@ abstract class StripePlatform extends PlatformInterface {
       String setupIntentClientSecret, PaymentMethodParams data,
       [Map<String, String> options = const {}]);
   Future<PaymentIntent> retrievePaymentIntent(String clientSecret);
+  Future<SetupIntent> retrieveSetupIntent(String clientSecret);
   Future<String> createTokenForCVCUpdate(String cvc);
 
   /// Methods related to ACH payments
